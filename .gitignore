@@ -4,3 +4,10 @@ Thumbs.db
 node_modules/
 .env
 .env.*
+.career-admin-key
+.careers-api-summary.json
+.aws-session-env
+career-admin-key.txt
+*.zip
+__pycache__/
+.playwright-cli/

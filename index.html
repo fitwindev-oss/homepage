@@ -9,6 +9,7 @@
     />
     <meta name="theme-color" content="#050706" />
     <title>FITWIN | Fit your twin, win your life</title>
+    <link rel="icon" type="image/png" href="assets/fitwin-logo-stacked.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -74,10 +75,17 @@
         <a href="#technology">Technology</a>
         <a href="#products">Products</a>
         <a href="#centers">For Fitness Centers</a>
+        <a href="#careers">Careers</a>
         <a href="#partnership">Partnership</a>
         <a href="#contact">Contact</a>
       </div>
-      <a class="nav-cta" href="#partnership">Become a FITWIN Partner</a>
+      <div class="nav-actions">
+        <div class="language-switch" aria-label="Language selector">
+          <button type="button" class="language-option is-active" data-lang-switch="en">EN</button>
+          <button type="button" class="language-option" data-lang-switch="ko">KO</button>
+        </div>
+        <a class="nav-cta" href="#partnership">Become a FITWIN Partner</a>
+      </div>
     </nav>
      
      <header class="hero" id="top">
@@ -362,6 +370,78 @@
                 <div class="tw-line"></div>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-careers" id="careers">
+        <div class="container">
+          <div class="careers-header r">
+            <p class="careers-eyebrow">Careers</p>
+            <h2 class="careers-title">Build the operating intelligence for the next fitness era.</h2>
+            <p class="careers-sub">Explore open roles at FITWIN and submit your application directly.</p>
+          </div>
+
+          <div class="careers-layout">
+            <div class="career-panel r">
+              <div class="career-panel-top">
+                <div>
+                  <p class="career-panel-kicker">Open Roles</p>
+                  <h3 class="career-panel-title">Current opportunities</h3>
+                </div>
+                <button class="career-refresh" type="button" id="refresh-jobs">Refresh</button>
+              </div>
+              <div class="jobs-list" id="jobs-list" aria-live="polite">
+                <p class="career-muted">Loading open roles...</p>
+              </div>
+            </div>
+
+            <div class="career-panel career-apply-panel r">
+              <div class="career-panel-top">
+                <div>
+                  <p class="career-panel-kicker">Apply</p>
+                  <h3 class="career-panel-title">Send your application</h3>
+                </div>
+              </div>
+              <form class="career-form" id="career-application-form">
+                <label>
+                  <span>Role</span>
+                  <select name="jobId" required>
+                    <option value="">Select a role</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Name</span>
+                  <input type="text" name="name" autocomplete="name" placeholder="Your name" required />
+                </label>
+                <label>
+                  <span>Email</span>
+                  <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+                </label>
+                <label>
+                  <span>Phone</span>
+                  <input type="tel" name="phone" autocomplete="tel" placeholder="+82 10-0000-0000" />
+                </label>
+                <label class="full-field">
+                  <span>Resume file <em>(PDF, DOC, DOCX, max 4MB)</em></span>
+                  <input type="file" name="resumeFile" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                </label>
+                <label class="full-field">
+                  <span>Portfolio or resume URL <em>(Optional)</em></span>
+                  <input type="url" name="portfolioUrl" placeholder="https://..." />
+                </label>
+                <label class="full-field">
+                  <span>Message</span>
+                  <textarea name="message" rows="5" placeholder="Tell us briefly why you are interested in FITWIN." required></textarea>
+                </label>
+                <label class="career-consent full-field">
+                  <input type="checkbox" name="consent" required />
+                  <span>I agree to FITWIN collecting and reviewing my application information for recruitment.</span>
+                </label>
+                <button class="career-submit" type="submit">Submit application</button>
+                <p class="career-form-status" role="status" aria-live="polite"></p>
+              </form>
+            </div>
           </div>
         </div>
       </section>

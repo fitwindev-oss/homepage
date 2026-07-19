@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#050706" />
+    <title>FITWIN Careers Admin</title>
+    <link rel="icon" type="image/png" href="assets/fitwin-logo-stacked.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <section class="admin-card">
+        <div class="admin-top">
+          <a href="/" aria-label="FITWIN home">
+            <img class="admin-logo" src="assets/fitwin-logo-horizontal.png" alt="FITWIN" />
+          </a>
+          <div class="nav-actions">
+            <div class="language-switch" aria-label="Language selector">
+              <button type="button" class="language-option is-active" data-lang-switch="en">EN</button>
+              <button type="button" class="language-option" data-lang-switch="ko">KO</button>
+            </div>
+            <a class="admin-back" href="/">Back to site</a>
+          </div>
+        </div>
+        <p class="careers-eyebrow">Careers Admin</p>
+        <h1 class="admin-title">Post a FITWIN job opening</h1>
+        <p class="admin-sub">
+          Enter the admin key, fill the role details, and publish it to the live Careers section.
+        </p>
+
+        <div class="admin-grid">
+          <form class="career-form admin-form" id="job-admin-form">
+            <label class="full-field">
+              <span>Admin key</span>
+              <input type="password" name="adminKey" autocomplete="off" placeholder="Enter admin key" required />
+            </label>
+            <label>
+              <span>Title (English)</span>
+              <input type="text" name="title" placeholder="AI Robotics Engineer" required />
+            </label>
+            <label>
+              <span>Title (Korean)</span>
+              <input type="text" name="titleKo" placeholder="AI 로보틱스 엔지니어" required />
+            </label>
+            <label>
+              <span>Department</span>
+              <input type="text" name="department" placeholder="Engineering" required />
+            </label>
+            <label>
+              <span>Location</span>
+              <input type="text" name="location" placeholder="Yongin, Korea" required />
+            </label>
+            <label>
+              <span>Employment type</span>
+              <input type="text" name="type" placeholder="Full-time" required />
+            </label>
+            <label>
+              <span>Status</span>
+              <select name="status">
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+              </select>
+            </label>
+            <label class="full-field">
+              <span>Summary (English)</span>
+              <textarea name="summary" rows="3" placeholder="Brief role summary" required></textarea>
+            </label>
+            <label class="full-field">
+              <span>Summary (Korean)</span>
+              <textarea name="summaryKo" rows="3" placeholder="역할 요약" required></textarea>
+            </label>
+            <label class="full-field">
+              <span>Responsibilities (one per line, English)</span>
+              <textarea name="responsibilities" rows="4" placeholder="Build AI motion-analysis pipelines"></textarea>
+            </label>
+            <label class="full-field">
+              <span>Responsibilities (one per line, Korean)</span>
+              <textarea name="responsibilitiesKo" rows="4" placeholder="AI 동작 분석 파이프라인 구축"></textarea>
+            </label>
+            <label class="full-field">
+              <span>Requirements (one per line, English)</span>
+              <textarea name="requirements" rows="4" placeholder="3+ years of production software experience"></textarea>
+            </label>
+            <label class="full-field">
+              <span>Requirements (one per line, Korean)</span>
+              <textarea name="requirementsKo" rows="4" placeholder="프로덕션 소프트웨어 개발 3년 이상"></textarea>
+            </label>
+            <button class="career-submit" type="submit">Publish job</button>
+            <p class="career-form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <aside class="admin-existing">
+            <div class="career-panel-top">
+              <div>
+                <p class="career-panel-kicker">Live Roles</p>
+                <h2 class="career-panel-title">Published openings</h2>
+              </div>
+              <button class="career-refresh" type="button" id="admin-refresh-jobs">Refresh</button>
+            </div>
+            <div class="jobs-list" id="admin-jobs-list" aria-live="polite">
+              <p class="career-muted">Loading open roles...</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
