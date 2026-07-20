@@ -1,5 +1,6 @@
 import base64
 import json
+import logging
 import os
 import re
 import time
@@ -10,10 +11,15 @@ import boto3
 
 
 s3 = boto3.client("s3")
+sns = boto3.client("sns")
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 DATA_BUCKET = os.environ["DATA_BUCKET"]
 JOBS_KEY = os.environ.get("JOBS_KEY", "jobs/jobs.json")
 ADMIN_KEY = os.environ["ADMIN_KEY"]
+NOTIFICATION_TOPIC_ARN = os.environ.get("NOTIFICATION_TOPIC_ARN", "")
 
 ALLOWED_ORIGINS = {
     "https://fitwin.ai",
@@ -105,6 +111,51 @@ def safe_filename(name):
     return base[:120] or "resume"
 
 
+def send_application_notification(record):
+    if not NOTIFICATION_TOPIC_ARN:
+        return
+
+    resume_url = "첨부 없음"
+    if record.get("resumeKey"):
+        resume_url = s3.generate_presigned_url(
+            "get_object",
+            Params={"Bucket": DATA_BUCKET, "Key": record["resumeKey"]},
+            ExpiresIn=7 * 24 * 60 * 60,
+        )
+
+    role = next(
+        (
+            f"{job.get('titleKo', '')} / {job.get('title', '')}".strip(" / ")
+            for job in load_jobs()
+            if job.get("id") == record["jobId"]
+        ),
+        record["jobId"],
+    )
+    message = "\n".join([
+        "FITWIN 홈페이지에 새 지원서가 접수되었습니다.",
+        "",
+        f"접수번호: {record['applicationId']}",
+        f"지원 직무: {role}",
+        f"이름: {record['name']}",
+        f"이메일: {record['email']}",
+        f"연락처: {record['phone'] or '-'}",
+        f"포트폴리오 / 이력서 링크: {record['portfolioUrl'] or '-'}",
+        f"접수 시각: {record['submittedAt']}",
+        "",
+        "지원 메시지:",
+        record["message"],
+        "",
+        "첨부 이력서 다운로드 링크 (7일간 유효):",
+        resume_url,
+    ])
+    subject_name = re.sub(r"[\r\n]+", " ", record["name"])[:40]
+    sns.publish(
+        TopicArn=NOTIFICATION_TOPIC_ARN,
+        Subject=f"[FITWIN 채용] 새 지원서 - {subject_name}"[:100],
+        Message=message,
+    )
+
+
 def submit_application(payload):
     required = ["jobId", "name", "email", "message"]
     missing = [field for field in required if not str(payload.get(field, "")).strip()]
@@ -157,6 +208,10 @@ def submit_application(payload):
         ContentType="application/json; charset=utf-8",
         ServerSideEncryption="AES256",
     )
+    try:
+        send_application_notification(record)
+    except Exception:
+        logger.exception("Application stored but notification delivery failed: %s", application_id)
     return application_id
 
 
