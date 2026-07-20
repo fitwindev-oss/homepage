@@ -6,134 +6,133 @@ let activeLanguage = DEFAULT_LANGUAGE;
 let careerJobs = [];
 
 const koText = {
-  "Why FITWIN": "왜 FITWIN인가",
+  "Why FITWIN": "FITWIN 소개",
   "Solutions": "솔루션",
   "Technology": "기술",
   "Products": "제품",
-  "For Fitness Centers": "피트니스 센터",
+  "For Fitness Centers": "피트니스 센터를 위해",
   "Careers": "채용",
-  "Partnership": "파트너십",
+  "Partnership": "파트너 문의",
   "Contact": "문의",
-  "Become a FITWIN Partner": "FITWIN 파트너 문의",
-  "Fit your twin, win your life.": "당신의 트윈을 맞추고, 삶을 이기세요.",
-  "The operating intelligence behind the next generation of fitness centers.": "차세대 피트니스 센터를 움직이는 운영 인텔리전스.",
-  "Move beyond coaching based on intuition.": "감에 의존하는 코칭을 넘어섭니다.",
-  "FITWIN is an AI-powered fitness platform built to understand each member’s physical condition, movement patterns, and exercise disposition.": "FITWIN은 회원의 신체 상태, 움직임 패턴, 운동 성향을 이해하도록 설계된 AI 기반 피트니스 플랫폼입니다.",
-  "FITWIN is an AI-powered fitness platform built to understand each member’s physical": "FITWIN은 회원의 신체 상태, 움직임 패턴, 운동 성향을 이해하도록 설계된",
-  "condition, movement patterns, and exercise disposition.": "AI 기반 피트니스 플랫폼입니다.",
+  "Become a FITWIN Partner": "파트너 문의하기",
+  "Fit your twin, win your life.": "회원을 더 깊이 이해하는 피트니스 운영 플랫폼",
+  "The operating intelligence behind the next generation of fitness centers.": "AI가 측정, 코칭, 운영을 하나로 연결합니다.",
+  "Move beyond coaching based on intuition.": "감에 의존하던 코칭을 데이터 기반 운영으로 바꿉니다.",
+  "FITWIN is an AI-powered fitness platform built to understand each member’s physical condition, movement patterns, and exercise disposition.": "FITWIN은 회원의 신체 상태와 움직임 패턴, 운동 성향을 분석해 개인화된 운동 경험과 센터 운영 효율을 함께 높이는 AI 피트니스 플랫폼입니다.",
+  "FITWIN is an AI-powered fitness platform built to understand each member’s physical": "FITWIN은 회원의 신체 상태와 움직임 패턴, 운동 성향을 분석해",
+  "condition, movement patterns, and exercise disposition.": "개인화된 운동 경험과 센터 운영 효율을 함께 높이는 AI 피트니스 플랫폼입니다.",
   "THE PARADOX": "피트니스 산업의 역설",
-  "The fitness industry's structural paradox — and why FITWIN exists.": "피트니스 산업의 구조적 역설, 그리고 FITWIN이 필요한 이유.",
+  "The fitness industry's structural paradox — and why FITWIN exists.": "피트니스 센터가 겪는 구조적 문제, FITWIN은 여기서 출발했습니다.",
   "5-year survival rate": "국내 피트니스 센터",
   "of Korean fitness centers": "5년 생존율",
-  "Members per trainer": "트레이너 1명당 회원 수",
-  "(unmanageable load)": "(관리 한계 초과)",
-  "Avg. gym price growth": "평균 헬스장 가격 상승률",
-  "vs. +28.4% CPI (10yr)": "소비자물가 +28.4% 대비 (10년)",
+  "Members per trainer": "트레이너 1명당 담당 회원 수",
+  "(unmanageable load)": "(관리 부담 증가)",
+  "Avg. gym price growth": "평균 이용료 상승률",
+  "vs. +28.4% CPI (10yr)": "소비자물가 +28.4% 대비, 10년 기준",
   "Owner": "센터 운영자",
   "High fixed cost · Trainer dependency ·": "높은 고정비 · 트레이너 의존도 ·",
-  "No objective KPIs": "객관적 KPI 부재",
+  "No objective KPIs": "객관적 지표 부족",
   "Trainer": "트레이너",
-  "Sales pressure · Overload · Subjective": "영업 압박 · 업무 과부하 · 주관적",
-  "coaching limit": "코칭의 한계",
+  "Sales pressure · Overload · Subjective": "영업 부담 · 과도한 관리 업무 · 주관적",
+  "coaching limit": "코칭 한계",
   "Member": "회원",
-  "Neglected · No feedback · Early": "방치 · 피드백 부재 · 빠른",
+  "Neglected · No feedback · Early": "관리 공백 · 피드백 부족 · 빠른",
   "dropout": "이탈",
   "ONE PLATFORM": "하나의 플랫폼",
-  "One platform. Four solutions.": "하나의 플랫폼. 네 가지 솔루션.",
-  "Connected by AI.": "AI로 연결됩니다.",
-  "Quad-Modal precision measurement": "4중 모달 정밀 측정",
-  "AI fitness management robot": "AI 피트니스 관리 로봇",
-  "pHRI rehabilitation robot": "pHRI 재활 로봇",
-  "Cloud management platform": "클라우드 관리 플랫폼",
-  "Measures physical & disposition data": "신체 및 운동 성향 데이터 측정",
+  "One platform. Four solutions.": "하나의 플랫폼, 네 가지 솔루션.",
+  "Connected by AI.": "AI로 측정부터 운영까지 연결합니다.",
+  "Quad-Modal precision measurement": "4가지 센서 기반 정밀 측정",
+  "AI fitness management robot": "AI 피트니스 운영 로봇",
+  "pHRI rehabilitation robot": "pHRI 재활·평가 로봇",
+  "Cloud management platform": "클라우드 센터 운영 플랫폼",
+  "Measures physical & disposition data": "신체 데이터와 운동 성향을 함께 측정",
   "Human PD-Twin": "휴먼 PD-Twin",
-  "AI engine builds your physical & disposition twin": "AI 엔진이 신체와 성향의 디지털 트윈을 구축",
-  "Robot delivers real-time coaching": "로봇이 실시간 코칭 제공",
-  "Platform manages retention & revenue": "플랫폼이 유지율과 매출 관리",
+  "AI engine builds your physical & disposition twin": "AI가 신체와 운동 성향의 디지털 트윈을 생성",
+  "Robot delivers real-time coaching": "로봇이 실시간 코칭을 제공",
+  "Platform manages retention & revenue": "플랫폼이 회원 유지와 매출을 관리",
   "Data flow: ANALYSIS → PD-Twin Engine → MANAGER · HEYDAY": "데이터 흐름: ANALYSIS → PD-Twin 엔진 → MANAGER · HEYDAY",
-  "Core Solutions": "핵심 솔루션",
-  "Prototype testing complete": "프로토타입 테스트 완료",
-  "Measure what other": "다른 시스템이 보지 못하는 것을",
-  "systems can't.": "측정합니다.",
-  "Precision biomechanics at 1/1000s resolution.": "1/1000초 해상도의 정밀 바이오메카닉스.",
-  "Built to see what the naked eye — and every other system — misses.": "육안과 기존 시스템이 놓치는 움직임까지 포착합니다.",
-  "95% biomechanical accuracy": "바이오메카닉스 정확도 95%",
+  "Core Solutions": "핵심 제품",
+  "Prototype testing complete": "프로토타입 검증 완료",
+  "Measure what other": "눈으로는 놓치는 움직임까지",
+  "systems can't.": "정밀하게 측정합니다.",
+  "Precision biomechanics at 1/1000s resolution.": "1/1000초 단위의 정밀 생체역학 분석.",
+  "Built to see what the naked eye — and every other system — misses.": "육안과 기존 장비가 놓치는 미세한 움직임까지 포착합니다.",
+  "95% biomechanical accuracy": "생체역학 분석 정확도 95%",
   "1/1000s sync": "1/1000초 동기화",
-  "Deep Bio Sensing": "딥 바이오 센싱",
+  "Deep Bio Sensing": "정밀 생체 데이터 센싱",
   "F-V profile · RFD": "F-V 프로파일 · RFD",
   "Software prototype complete": "소프트웨어 프로토타입 완료",
-  "Your trainers, scaled.": "트레이너의 역량을 확장합니다.",
-  "One robot. Every member, personally coached.": "하나의 로봇이 모든 회원에게 개인화 코칭을 제공합니다.",
-  "Autonomous navigation, face recognition in 0.3s, and real-time posture feedback — without a trainer present.": "자율주행, 0.3초 얼굴 인식, 실시간 자세 피드백을 트레이너 없이 제공합니다.",
+  "Your trainers, scaled.": "트레이너의 코칭 역량을 확장합니다.",
+  "One robot. Every member, personally coached.": "로봇 한 대가 모든 회원에게 개인화 코칭을 제공합니다.",
+  "Autonomous navigation, face recognition in 0.3s, and real-time posture feedback — without a trainer present.": "자율주행, 0.3초 얼굴 인식, 실시간 자세 피드백을 트레이너가 곁에 없을 때도 제공합니다.",
   "LiDAR navigation": "LiDAR 내비게이션",
   "Vision posture AI": "비전 자세 AI",
   "pHRI safe design": "pHRI 안전 설계",
   "Core pHRI technology secured": "핵심 pHRI 기술 확보",
-  "The exam a human": "사람의 손으로 표준화하기 어려운",
-  "hand can't standardize.": "검사를 구현합니다.",
-  "pHRI palpation technology reads deep musculoskeletal movement that vision-based systems simply can't reach.": "pHRI 촉진 기술은 비전 기반 시스템이 닿지 못하는 깊은 근골격 움직임을 읽어냅니다.",
+  "The exam a human": "사람 손으로는 표준화하기 어려운",
+  "hand can't standardize.": "평가를 구현합니다.",
+  "pHRI palpation technology reads deep musculoskeletal movement that vision-based systems simply can't reach.": "pHRI 촉진 기술은 영상만으로는 확인하기 어려운 깊은 근골격 움직임까지 읽어냅니다.",
   "pHRI palpation": "pHRI 촉진",
   "3D joint analysis": "3D 관절 분석",
   "Orthopedic protocol": "정형외과 프로토콜",
   "Zero human error": "인적 오류 최소화",
   "Architecture & DB design complete": "아키텍처 및 DB 설계 완료",
-  "Everything your gym": "센터가 아는 모든 것을",
-  "knows, in one place.": "한곳에 모읍니다.",
-  "Every insight. One dashboard.": "모든 인사이트를 하나의 대시보드로.",
-  "Churn prediction, AI coaching nudges, and unmanned center management — all connected to each member's PD-Twin.": "이탈 예측, AI 코칭 넛지, 무인 센터 관리가 각 회원의 PD-Twin과 연결됩니다.",
+  "Everything your gym": "센터 데이터를 한곳에 모아",
+  "knows, in one place.": "운영을 바꿉니다.",
+  "Every insight. One dashboard.": "모든 인사이트를 하나의 대시보드에서 확인하세요.",
+  "Churn prediction, AI coaching nudges, and unmanned center management — all connected to each member's PD-Twin.": "이탈 예측, AI 코칭 제안, 무인 센터 운영이 회원별 PD-Twin과 연결됩니다.",
   "AWS cloud-native": "AWS 클라우드 네이티브",
   "Churn prediction": "이탈 예측",
   "8 disposition archetypes": "8가지 운동 성향 유형",
   "Vision AI safety": "비전 AI 안전",
   "The triple win": "트리플 윈",
-  "A win for everyone in the room.": "센터 안의 모두가 이기는 구조.",
-  "FITWIN aligns the interests of owners, trainers, and members for the first time.": "FITWIN은 운영자, 트레이너, 회원의 이해관계를 처음으로 정렬합니다.",
+  "A win for everyone in the room.": "모두에게 이익이 돌아가는 구조.",
+  "FITWIN aligns the interests of owners, trainers, and members for the first time.": "FITWIN은 센터 운영자, 트레이너, 회원의 목표가 함께 맞물리도록 설계되었습니다.",
   "Fitness Center Owner": "피트니스 센터 운영자",
-  "For Fitness Centers": "피트니스 센터를 위해",
-  "Run leaner.": "더 가볍게 운영하고",
-  "Earn more.": "더 많이 벌 수 있게.",
-  "Revenue up · Trainer dependency down": "매출은 높이고 · 트레이너 의존도는 낮추고",
-  "Unattended hybrid operation": "무인/하이브리드 운영",
-  "AI-driven member retention": "AI 기반 회원 유지",
+  "Run leaner.": "운영은 가볍게",
+  "Earn more.": "매출은 더 크게.",
+  "Revenue up · Trainer dependency down": "매출 증대 · 트레이너 의존도 감소",
+  "Unattended hybrid operation": "무인/하이브리드 운영 지원",
+  "AI-driven member retention": "AI 기반 회원 이탈 관리",
   "For Trainers": "트레이너를 위해",
-  "Less admin.": "행정 업무는 줄이고",
+  "Less admin.": "관리 업무는 줄이고",
   "Better closes.": "상담 전환은 높입니다.",
-  "AI-guided consultation script": "AI 기반 상담 스크립트",
-  "Higher PT close rate": "PT 전환율 향상",
-  "Automated session logging": "세션 기록 자동화",
+  "AI-guided consultation script": "AI 기반 상담 가이드",
+  "Higher PT close rate": "PT 등록 전환율 향상",
+  "Automated session logging": "수업 기록 자동화",
   "For Members": "회원을 위해",
-  "Personalized": "처음부터",
-  "from day one.": "개인화됩니다.",
-  "Biomechanics-based personal report": "바이오메카닉스 기반 개인 리포트",
-  "Motivation tuned to disposition type": "성향 유형에 맞춘 동기부여",
-  "Progress that's visible and owned": "눈에 보이고 스스로 관리하는 성장",
-  "Build the operating intelligence for the next fitness era.": "다음 피트니스 시대의 운영 인텔리전스를 함께 만듭니다.",
-  "Explore open roles at FITWIN and submit your application directly.": "FITWIN의 채용 공고를 확인하고 바로 지원서를 제출하세요.",
-  "Open Roles": "채용 공고",
-  "Current opportunities": "현재 모집 중인 포지션",
+  "Personalized": "첫 상담부터",
+  "from day one.": "개인에게 맞게.",
+  "Biomechanics-based personal report": "생체역학 기반 개인 리포트",
+  "Motivation tuned to disposition type": "운동 성향에 맞춘 동기부여",
+  "Progress that's visible and owned": "눈에 보이는 변화와 스스로 관리하는 성장",
+  "Build the operating intelligence for the next fitness era.": "FITWIN과 함께 피트니스의 기준을 바꿀 동료를 찾습니다.",
+  "Explore open roles at FITWIN and submit your application directly.": "채용 중인 포지션을 확인하고 바로 지원서를 제출하세요.",
+  "Open Roles": "채용 중인 포지션",
+  "Current opportunities": "현재 모집 공고",
   "Refresh": "새로고침",
   "Loading open roles...": "채용 공고를 불러오는 중입니다...",
-  "Apply": "지원",
+  "Apply": "지원하기",
   "Send your application": "지원서 제출",
-  "Role": "지원 포지션",
-  "Select a role": "포지션 선택",
+  "Role": "지원 분야",
+  "Select a role": "지원할 포지션 선택",
   "Name": "이름",
   "Email": "이메일",
   "Phone": "연락처",
-  "Resume file": "이력서 파일",
+  "Resume file": "이력서 첨부",
   "(PDF, DOC, DOCX, max 4MB)": "(PDF, DOC, DOCX, 최대 4MB)",
-  "Portfolio or resume URL": "포트폴리오 또는 이력서 URL",
+  "Portfolio or resume URL": "포트폴리오/이력서 링크",
   "(Optional)": "(선택)",
-  "Message": "메시지",
-  "I agree to FITWIN collecting and reviewing my application information for recruitment.": "채용 검토를 위해 FITWIN이 지원 정보를 수집하고 검토하는 데 동의합니다.",
-  "Submit application": "지원서 제출",
-  "Ready to see FITWIN": "FITWIN을 센터에서",
-  "in your center?": "만나볼 준비가 되셨나요?",
-  "Join pilot centers launching in Q4 2026. Request an early access demo or partnership inquiry.": "2026년 4분기 파일럿 센터 모집에 함께하세요. 데모 또는 파트너십 문의를 남겨주세요.",
+  "Message": "지원 메시지",
+  "I agree to FITWIN collecting and reviewing my application information for recruitment.": "채용 절차 진행을 위해 FITWIN이 지원 정보를 수집하고 검토하는 것에 동의합니다.",
+  "Submit application": "지원서 제출하기",
+  "Ready to see FITWIN": "FITWIN 도입을",
+  "in your center?": "함께 논의해보세요.",
+  "Join pilot centers launching in Q4 2026. Request an early access demo or partnership inquiry.": "2026년 4분기 파일럿 센터를 모집합니다. 데모 요청이나 파트너십 문의를 남겨주세요.",
   "Contact": "연락처",
   "Email or phone": "이메일 또는 전화번호",
-  "Fitness Center or Organization": "피트니스 센터 또는 기관",
-  "Apply for a FITWIN Partnership": "FITWIN 파트너십 신청",
+  "Fitness Center or Organization": "센터명 또는 소속",
+  "Apply for a FITWIN Partnership": "FITWIN 파트너십 문의하기",
   "FITWIN Co., Ltd.": "주식회사 핏윈",
   "CEO: KEEUNG YOO": "대표: 유기응",
   "Email:": "이메일:",
@@ -145,54 +144,63 @@ const koText = {
   "you@example.com": "you@example.com",
   "+82 10-0000-0000": "+82 10-0000-0000",
   "https://...": "https://...",
-  "Tell us briefly why you are interested in FITWIN.": "FITWIN에 관심을 갖게 된 이유를 간단히 적어주세요.",
+  "Tell us briefly why you are interested in FITWIN.": "FITWIN에 관심을 갖게 된 이유와 함께하고 싶은 일을 간단히 적어주세요.",
   "Center name": "센터명",
-  "FITWIN Careers Admin": "FITWIN 채용 관리자",
+  "Enter admin key": "관리자 키 입력",
+  "AI Robotics Engineer": "AI 로보틱스 엔지니어",
+  "Engineering": "엔지니어링",
+  "Yongin, Korea": "용인, 대한민국",
+  "Full-time": "정규직",
+  "Flexible": "협의 가능",
+  "Brief role summary": "포지션을 간단히 소개해 주세요.",
+  "Build AI motion-analysis pipelines": "AI 동작 분석 파이프라인 구축",
+  "3+ years of production software experience": "실무 소프트웨어 개발 경험 3년 이상",
+  "FITWIN Careers Admin": "FITWIN 채용 공고 관리",
   "Back to site": "사이트로 돌아가기",
-  "Careers Admin": "채용 관리자",
-  "Post a FITWIN job opening": "FITWIN 채용 공고 등록",
-  "Enter the admin key, fill the role details, and publish it to the live Careers section.": "관리자 키와 포지션 정보를 입력하면 라이브 Careers 섹션에 공고가 게시됩니다.",
-  "Admin key": "관리자 키",
-  "Title (English)": "제목 (영문)",
-  "Title (Korean)": "제목 (국문)",
+  "Careers Admin": "채용 공고 관리",
+  "Post a FITWIN job opening": "FITWIN 채용 공고 등록하기",
+  "Enter the admin key, fill the role details, and publish it to the live Careers section.": "관리자 키와 공고 내용을 입력하면 사이트의 채용 섹션에 바로 게시됩니다.",
+  "Admin key": "관리자 인증키",
+  "Title (English)": "제목 (영어)",
+  "Title (Korean)": "제목 (한국어)",
   "Department": "부서",
   "Location": "근무지",
-  "Employment type": "고용 형태",
+  "Employment type": "근무 형태",
   "Status": "상태",
-  "Open": "진행 중",
+  "Open": "공개",
   "Closed": "마감",
-  "Summary (English)": "요약 (영문)",
-  "Summary (Korean)": "요약 (국문)",
-  "Responsibilities (one per line, English)": "주요 업무 (영문, 한 줄에 하나)",
-  "Responsibilities (one per line, Korean)": "주요 업무 (국문, 한 줄에 하나)",
-  "Requirements (one per line, English)": "자격 요건 (영문, 한 줄에 하나)",
-  "Requirements (one per line, Korean)": "자격 요건 (국문, 한 줄에 하나)",
-  "Publish job": "공고 게시",
-  "Live Roles": "게시된 공고",
-  "Published openings": "현재 공개된 공고",
+  "Summary (English)": "요약 (영어)",
+  "Summary (Korean)": "요약 (한국어)",
+  "Responsibilities (one per line, English)": "주요 업무 (영어, 한 줄에 하나씩)",
+  "Responsibilities (one per line, Korean)": "주요 업무 (한국어, 한 줄에 하나씩)",
+  "Requirements (one per line, English)": "자격 요건 (영어, 한 줄에 하나씩)",
+  "Requirements (one per line, Korean)": "자격 요건 (한국어, 한 줄에 하나씩)",
+  "Publish job": "사이트에 게시하기",
+  "Live Roles": "실시간 공고",
+  "Published openings": "게시된 채용 공고",
 };
 
 const koMeta = {
-  title: "FITWIN | 당신의 트윈을 맞추고, 삶을 이기세요",
+  title: "FITWIN | AI 피트니스 운영 플랫폼",
   description:
-    "FITWIN은 각 회원의 신체 상태, 움직임 패턴, 운동 성향을 이해하는 AI 기반 피트니스 플랫폼입니다.",
+    "FITWIN은 회원의 신체 상태와 움직임 패턴, 운동 성향을 분석해 개인화된 운동 경험과 센터 운영 효율을 함께 높이는 AI 피트니스 플랫폼입니다.",
 };
 
 const fallbackJobs = [
   {
     id: "general-application",
     title: "General Application",
-    titleKo: "상시 인재 등록",
+    titleKo: "상시 지원",
     department: "FITWIN",
     location: "Yongin, Korea",
     type: "Flexible",
     status: "open",
     summary: "Share your profile with FITWIN. We review strong candidates as new roles open.",
-    summaryKo: "FITWIN과 함께하고 싶은 분은 프로필을 남겨주세요. 새로운 포지션이 열릴 때 우선 검토합니다.",
+    summaryKo: "FITWIN과 함께하고 싶다면 자유롭게 프로필을 남겨주세요. 적합한 포지션이 열리면 우선 검토하겠습니다.",
     responsibilities: ["Tell us where you can create impact across AI, robotics, software, operations, or growth."],
-    responsibilitiesKo: ["AI, 로보틱스, 소프트웨어, 운영, 성장 영역에서 만들 수 있는 임팩트를 알려주세요."],
+    responsibilitiesKo: ["AI, 로보틱스, 소프트웨어, 운영, 사업개발 등 본인이 기여할 수 있는 영역을 알려주세요."],
     requirements: ["A clear portfolio, resume, or track record related to the role you want to explore."],
-    requirementsKo: ["희망 분야와 관련된 명확한 포트폴리오, 이력서 또는 업무 성과."],
+    requirementsKo: ["지원 분야와 관련된 이력서, 포트폴리오 또는 프로젝트 경험을 보내주세요."],
   },
 ];
 
@@ -337,7 +345,9 @@ if (contactForm) {
 
     const status = form.querySelector(".form-status");
     if (status) {
-      status.textContent = "FITWIN partnership request is ready to connect to your email or CRM.";
+      status.textContent = activeLanguage === "ko"
+        ? "파트너십 문의 양식이 준비되었습니다. 이메일 또는 CRM 연동 후 접수까지 연결할 수 있습니다."
+        : "FITWIN partnership request is ready to connect to your email or CRM.";
     }
   });
 }
@@ -356,11 +366,11 @@ if (notifyButton) {
     const email = input.value.trim();
 
     if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      message.textContent = "Your launch notification request has been received.";
+      message.textContent = activeLanguage === "ko" ? "알림 신청이 확인되었습니다." : "Your launch notification request has been received.";
       message.style.color = "var(--lime-dim)";
       input.value = "";
     } else {
-      message.textContent = "Please enter a valid email address.";
+      message.textContent = activeLanguage === "ko" ? "올바른 이메일 주소를 입력해 주세요." : "Please enter a valid email address.";
       message.style.color = "#e6a23c";
     }
   });
@@ -438,7 +448,7 @@ function applyLanguage(language, options = {}) {
   const isAdminPage = document.body.classList.contains("admin-page");
   document.documentElement.lang = activeLanguage;
   document.title = isAdminPage
-    ? activeLanguage === "ko" ? "FITWIN 채용 관리자" : "FITWIN Careers Admin"
+    ? activeLanguage === "ko" ? "FITWIN 채용 공고 관리" : "FITWIN Careers Admin"
     : activeLanguage === "ko" ? koMeta.title : "FITWIN | Fit your twin, win your life";
   const description = document.querySelector('meta[name="description"]');
   if (description) {
@@ -503,6 +513,10 @@ function localizeList(job, field) {
   return Array.isArray(value) ? value : [];
 }
 
+function localizeInline(value) {
+  return activeLanguage === "ko" ? translateValue(String(value || ""), activeLanguage) : String(value || "");
+}
+
 function renderJobs() {
   const jobsList = document.querySelector("#jobs-list");
   const jobSelect = document.querySelector('#career-application-form select[name="jobId"]');
@@ -549,16 +563,16 @@ function renderJobCard(job) {
         <span class="job-status">${statusText}</span>
       </div>
       <p class="job-meta">
-        <span>${escapeHtml(job.department || "FITWIN")}</span>
-        <span>${escapeHtml(job.location || "Yongin, Korea")}</span>
-        <span>${escapeHtml(job.type || "Full-time")}</span>
+        <span>${escapeHtml(localizeInline(job.department || "FITWIN"))}</span>
+        <span>${escapeHtml(localizeInline(job.location || "Yongin, Korea"))}</span>
+        <span>${escapeHtml(localizeInline(job.type || "Full-time"))}</span>
       </p>
       <p class="job-summary">${escapeHtml(localizeJob(job, "summary"))}</p>
       <div class="job-details">
         ${responsibilities.length ? `<div><h4>${activeLanguage === "ko" ? "주요 업무" : "Responsibilities"}</h4><ul>${responsibilities.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>` : ""}
         ${requirements.length ? `<div><h4>${activeLanguage === "ko" ? "자격 요건" : "Requirements"}</h4><ul>${requirements.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>` : ""}
       </div>
-      ${job.status === "closed" ? "" : `<button class="career-refresh" type="button" data-apply-job="${escapeHtml(job.id)}">${activeLanguage === "ko" ? "이 포지션 지원" : "Apply for this role"}</button>`}
+      ${job.status === "closed" ? "" : `<button class="career-refresh" type="button" data-apply-job="${escapeHtml(job.id)}">${activeLanguage === "ko" ? "지원하기" : "Apply for this role"}</button>`}
     </article>
   `;
 }
@@ -663,7 +677,7 @@ if (careerApplicationForm) {
         body: JSON.stringify(payload),
       });
       status.textContent = activeLanguage === "ko"
-        ? `지원서가 제출되었습니다. 접수번호: ${result.applicationId}`
+        ? `지원서가 접수되었습니다. 접수번호: ${result.applicationId}`
         : `Application submitted. Reference: ${result.applicationId}`;
       form.reset();
     } catch (error) {
@@ -715,7 +729,7 @@ if (jobAdminForm) {
     };
 
     status.classList.remove("is-error");
-    status.textContent = "Publishing job...";
+    status.textContent = activeLanguage === "ko" ? "공고를 게시하는 중입니다..." : "Publishing job...";
     submit.disabled = true;
 
     try {
@@ -724,12 +738,12 @@ if (jobAdminForm) {
         headers: { "x-admin-key": adminKey },
         body: JSON.stringify(payload),
       });
-      status.textContent = "Job published.";
+      status.textContent = activeLanguage === "ko" ? "공고가 게시되었습니다." : "Job published.";
       form.reset();
       await loadJobs();
     } catch (error) {
       status.classList.add("is-error");
-      status.textContent = error.message || "Could not publish job.";
+      status.textContent = error.message || (activeLanguage === "ko" ? "공고 게시에 실패했습니다." : "Could not publish job.");
     } finally {
       submit.disabled = false;
     }
